@@ -1,4 +1,3 @@
-# Create your models here.
 from sqlalchemy_utils import URLType
 
 from game_app import db
@@ -22,6 +21,7 @@ class System(db.Model):
   """Game System model."""
   id = db.Column(db.Integer, primary_key=True)
   name = db.Column(db.String(80), nullable=False)
+  purchased = db.Column(db.Date)
   games = db.relationship('Game', back_populates='system')
   added_by_id = db.Column(db.Integer, db.ForeignKey('user.id'))
   added_by = db.relationship('User')
@@ -32,6 +32,7 @@ class Game(db.Model):
   title = db.Column(db.String(80), nullable=False)
   genre = db.Column(db.Enum(GameGenre), default=GameGenre.OTHER)
   photo_url = db.Column(URLType)
+  purchased = db.Column(db.Date)
   system_id = db.Column(db.Integer, db.ForeignKey('system.id'), nullable=False)
   system = db.relationship('System', back_populates='games')
   added_by_id = db.Column(db.Integer, db.ForeignKey('user.id'))
