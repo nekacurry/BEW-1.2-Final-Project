@@ -1,7 +1,7 @@
 from flask import Blueprint, request, render_template, redirect, url_for, flash
 from datetime import date, datetime
 from game_app.models import System, Game, User
-from game_app.forms import GameForm, SystemForm, SignUpForm, LoginForm
+from game_app.main.forms import GameForm, SystemForm
 from flask_login import login_user, logout_user, login_required, current_user
 from flask_bcrypt import Bcrypt
 
