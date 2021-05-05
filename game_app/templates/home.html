@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Game Shelf</h1>
+
+<h2>All Systems</h2>
+
+{% for system in all_systems %}
+<div class="system">
+    <a href="/system/{{ system.id }}">{{ system.title }}</a> - 
+    {{ system.games|length }} games
+    <p><strong>Purchased:</strong> {{ store.purchased }}</p>
+</div>
+{% endfor %}
+
+{% endblock %}

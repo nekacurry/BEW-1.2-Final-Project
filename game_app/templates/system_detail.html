@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>System - {{ system.title }}</h1>
+
+<strong>Purchased:</strong> {{ system.purchased }}
+
+<p>Added by: {{ system.created_by.username }}</p>
+
+
+<h2>Games</h2>
+
+<div class="games">
+    {% for games in system.games %}
+    <div class="game-details">
+        <a href="/game/{{ game.id }}"><img src="{{ game.photo_url }}" alt="{{ game.name }}" width="200px">
+        <p><strong>{{ game.name }}</strong></p></a>
+        <p><strong>Genre: {{ game.genre }}</strong></p>
+    </div>
+    {% endfor %}
+</div>
+
+
+<h2>Edit System</h2>
+
+<form method="POST" action="{{ url_for('main.store_detail', store_id=store.id) }}">
+  {{ form.csrf_token }}
+    <fieldset>
+        <legend>Please enter the system information:</legend>
+
+            {{ form.name.label }}
+            {{ form.name }}
+    
+            {{ form.purchased.label }}
+            {{ form.purchased }}
+    
+            {{ form.submit }}
+    </fieldset>
+</form>
+
+{% endblock %}

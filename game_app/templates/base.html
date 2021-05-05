@@ -5,8 +5,16 @@
         <link rel="stylesheet" href="/static/style.css">
     </head>
     <body>
-        <!-- Add base html here. -->
+      <div>
+        <nav>
+          <a href="/">Home</a>
+          <div>
+              <a href="/new_system">New System</a>
+              <a href="/new_game">New Game</a>
+          </div>
+        </nav>
         
-        {% block content %}
+        {% block content %}{% endblock %}
+      </div>
     </body>
 </html>
