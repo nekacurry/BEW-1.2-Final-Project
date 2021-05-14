@@ -11,7 +11,7 @@ from game_app import app, db
 
 @main.route('/')
 def homepage():
-    all_systems = Systems.query.all()
+    all_systems = System.query.all()
     print(all_systems)
     return render_template('home.html', all_systems=all_systems)
 
