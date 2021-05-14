@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, DateField, SelectField, SubmitField, FloatField
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired, Length, URL
-from gampe_app.models import GameGenre, System
+from game_app.models import GameGenre, System
 
 class SystemForm(FlaskForm):
     """Form for adding/updating a Game System."""
