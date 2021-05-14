@@ -33,3 +33,25 @@ def new_system():
       return redirect(url_for('main.system_detail', system_id=new_system.id))
 
     return render_template('new_system.html', form=form)
+
+@main.route('/new_item', methods=['GET', 'POST'])
+@login_required
+def new_item():
+
+    form = GameForm()
+
+    if form.validate_on_submit():
+      new_game = Game(
+        title = form.title.data,
+        genre = form.genre.data,
+        photo_url = form.photo_url.data,
+        purchased = form.purchased.data,
+        system = form.system.data,
+        added_by = current_user
+      )
+      db.session.add(new_game)
+      db.session.commit()
+      flash('New game added to collection!')
+      return redirect(url_for('main.game_detail', item_id=new_item.id))
+
+    return render_template('new_game.html', form=form)
