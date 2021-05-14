@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>System - {{ system.title }}</h1>
+<h1>System - {{ system.name }}</h1>
 
 <strong>Purchased:</strong> {{ system.purchased }}
 
@@ -13,8 +13,8 @@
 <div class="games">
     {% for games in system.games %}
     <div class="game-details">
-        <a href="/game/{{ game.id }}"><img src="{{ game.photo_url }}" alt="{{ game.name }}" width="200px">
-        <p><strong>{{ game.name }}</strong></p></a>
+        <a href="/game/{{ game.id }}"><img src="{{ game.photo_url }}" alt="{{ game.title }}" width="200px">
+        <p><strong>{{ game.title }}</strong></p></a>
         <p><strong>Genre: {{ game.genre }}</strong></p>
     </div>
     {% endfor %}
@@ -23,7 +23,7 @@
 
 <h2>Edit System</h2>
 
-<form method="POST" action="{{ url_for('main.store_detail', store_id=store.id) }}">
+<form method="POST" action="{{ url_for('main.system_detail', system_id=system.id) }}">
   {{ form.csrf_token }}
     <fieldset>
         <legend>Please enter the system information:</legend>
