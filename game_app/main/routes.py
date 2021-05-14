@@ -64,8 +64,7 @@ def store_detail(system_id):
     form = SystemForm(obj=system)
 
     if form.validate_on_submit():
-      system.name = form.name.data,
-      system.purchased = form.purchased.data
+      system.name = form.name.data
       
       db.session.add(system)
       db.session.commit()
@@ -74,3 +73,25 @@ def store_detail(system_id):
 
     system = System.query.get(system_id)
     return render_template('system_detail.html', system=system, form=form)
+
+@main.route('/game/<game_id>', methods=['GET', 'POST'])
+@login_required
+def game_detail(game_id):
+    game = Game.query.get(game_id)
+  
+    form = GameForm(obj=game)
+
+    if form.validate_on_submit():
+      
+      game.title = form.title.data,
+      game.genre = form.genre.data,
+      game.photo_url = form.photo_url.data,
+      game.system = form.system.data
+      
+      db.session.add(game)
+      db.session.commit()
+      flash('Game updated!')
+      return redirect(url_for('main.game_detail', game_id = game.id))
+
+    game = Game.query.get(game_id)
+    return render_template('game_detail.html', game=game, form=form)
