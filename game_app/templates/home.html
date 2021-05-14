@@ -2,6 +2,7 @@
 {% block content %}
 
 <h1>My Game Shelf</h1>
+{% if current_user.is_authenticated %}
 
 <h2>All Systems</h2>
 
@@ -12,5 +13,8 @@
     <p><strong>Purchased:</strong> {{ system.purchased }}</p>
 </div>
 {% endfor %}
+{% else %}
+<p>Please <a href="/login"> Log In </a> or <a href="/signup"> Sign Up</a> to see your collection!</p>
+{% endif %}
 
 {% endblock %}
