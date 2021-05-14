@@ -64,7 +64,8 @@ def system_detail(system_id):
     form = SystemForm(obj=system)
 
     if form.validate_on_submit():
-      system.name = form.name.data
+      system.name = form.name.data,
+      system.purchased = form.purchased.data
       
       db.session.add(system)
       db.session.commit()
