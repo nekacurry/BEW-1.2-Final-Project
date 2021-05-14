@@ -23,7 +23,7 @@ def new_system():
 
     if form.validate_on_submit():
       new_system = System(
-        title = form.title.data,
+        name = form.name.data,
         purchased = form.purchased.data,
         added_by = current_user
       )
@@ -34,7 +34,7 @@ def new_system():
 
     return render_template('new_system.html', form=form)
 
-@main.route('/new_item', methods=['GET', 'POST'])
+@main.route('/new_game', methods=['GET', 'POST'])
 @login_required
 def new_item():
 
@@ -55,3 +55,22 @@ def new_item():
       return redirect(url_for('main.game_detail', item_id=new_item.id))
 
     return render_template('new_game.html', form=form)
+
+@main.route('/system/<system_id>', methods=['GET', 'POST'])
+@login_required
+def store_detail(system_id):
+    system = System.query.get(system_id)
+   
+    form = SystemForm(obj=system)
+
+    if form.validate_on_submit():
+      system.name = form.name.data,
+      system.purchased = form.purchased.data
+      
+      db.session.add(system)
+      db.session.commit()
+      flash('System updated!')
+      return redirect(url_for('main.system_detail', store_id=system.id))
+
+    system = System.query.get(system_id)
+    return render_template('system_detail.html', system=system, form=form)
