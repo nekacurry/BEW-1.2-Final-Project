@@ -7,9 +7,9 @@
 
 {% for system in all_systems %}
 <div class="system">
-    <a href="/system/{{ system.id }}">{{ system.title }}</a> - 
+    <a href="/system/{{ system.id }}">{{ system.name }}</a> - 
     {{ system.games|length }} games
-    <p><strong>Purchased:</strong> {{ store.purchased }}</p>
+    <p><strong>Purchased:</strong> {{ system.purchased }}</p>
 </div>
 {% endfor %}
 

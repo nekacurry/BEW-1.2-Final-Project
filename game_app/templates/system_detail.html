@@ -5,13 +5,13 @@
 
 <strong>Purchased:</strong> {{ system.purchased }}
 
-<p>Added by: {{ system.created_by.username }}</p>
+<p>Added by: {{ system.added_by.username }}</p>
 
 
 <h2>Games</h2>
 
 <div class="games">
-    {% for games in system.games %}
+    {% for game in system.games %}
     <div class="game-details">
         <a href="/game/{{ game.id }}"><img src="{{ game.photo_url }}" alt="{{ game.title }}" width="200px">
         <p><strong>{{ game.title }}</strong></p></a>

@@ -36,7 +36,7 @@ def new_system():
 
 @main.route('/new_game', methods=['GET', 'POST'])
 @login_required
-def new_item():
+def new_game():
 
     form = GameForm()
 
@@ -52,13 +52,13 @@ def new_item():
       db.session.add(new_game)
       db.session.commit()
       flash('New game added to collection!')
-      return redirect(url_for('main.game_detail', item_id=new_item.id))
+      return redirect(url_for('main.game_detail', game_id=new_game.id))
 
     return render_template('new_game.html', form=form)
 
 @main.route('/system/<system_id>', methods=['GET', 'POST'])
 @login_required
-def store_detail(system_id):
+def system_detail(system_id):
     system = System.query.get(system_id)
    
     form = SystemForm(obj=system)
@@ -69,7 +69,7 @@ def store_detail(system_id):
       db.session.add(system)
       db.session.commit()
       flash('System updated!')
-      return redirect(url_for('main.system_detail', store_id=system.id))
+      return redirect(url_for('main.system_detail', system_id=system.id))
 
     system = System.query.get(system_id)
     return render_template('system_detail.html', system=system, form=form)
